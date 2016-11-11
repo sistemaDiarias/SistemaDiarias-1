@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <title>Pagina inicial</title>
   <meta charset="utf-8">
@@ -13,7 +13,7 @@
 
 <div class="container text-center">
     
-    
+    <p>Ir para <a href="cadastro_servidores.php">Cadastro de servidores</a></p>
 </div>
 
 </body>
