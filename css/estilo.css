@@ -1,0 +1,11 @@
+.container{
+    border: solid 1px red;
+}
+
+.form-control{
+    margin-bottom: 10px;
+}
+
+form{
+    border: solid blue 1px;
+}
