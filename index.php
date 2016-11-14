@@ -10,7 +10,9 @@
   <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+    <?php
+    include_once 'menu.html';
+    ?>
 <div class="container text-center">    
     <p>Ir para <a href="cadastro_servidores.php">Cadastro de servidores</a> </p>
 </div>

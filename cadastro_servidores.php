@@ -10,6 +10,10 @@
   <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+    
+    <?php
+    include_once 'menu.html';
+    ?>
 
 <div class="container text-center">
     <h1>Cadastro de servidores</h1>
@@ -21,7 +25,7 @@
         
         <div class="col-sm-10">
             
-            <form class="form-horizontal" action="index.php" method="get">
+            <form class="form-horizontal" action="index.php" method="post">
                 <div class="form-group">
                     <label class="control-label col-sm-2">Nome</label>
                     <div class="col-sm-10">
@@ -32,12 +36,12 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">CPF</label>
                     <div class="col-sm-4">
-                        <input class="form-control" id="cpf" type="number" name="cpf" placeholder="Digite seu CPF" >
+                        <input class="form-control" id="cpf" type="number" name="cpf" placeholder="Digite o CPF" >
                     </div>
 
                     <label class="control-label col-sm-2">RG</label>
                     <div class="col-sm-4">
-                        <input class="form-control" id="rg" type="number" name="rg" placeholder="Digite seu RG" >
+                        <input class="form-control" id="rg" type="number" name="rg" placeholder="Digite o RG" >
                     </div> 
                 </div>
                 
@@ -63,6 +67,16 @@
                     </div>
                     
                     <label class="col-sm-2">Senha</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" id="senha" type="password" name="senha" placeholder="Escolha sua senha">
+                    </div>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-6"></div>
+                    
+                    <label class="col-sm-2">Confirme sua Senha</label>
                     <div class="col-sm-4">
                         <input class="form-control" id="senha" type="password" name="senha" placeholder="Escolha sua senha">
                     </div>
