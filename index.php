@@ -1,17 +1,22 @@
 <?php
     require_once ('classes/pagina.php');
     
-    class Pagina_Inicial extends Pagina{
+    //Extende da classe Pagina
+    class Pagina_Principal extends Pagina{
         public function exibir_body() {
-            parent::exibir_body();
+            parent::exibir_body();//Metodo da classe PAI
+            
             ?>
-                <h1>Isso não é mais PHP</h1>
+                <h1>Pagina principal</h1>
+                <p>Aqui estou reescrevendo o o metodo exibir_body() da classe Pagina</p>
+                <p>Basta extender essa classe e pronto</p>
+            
             <?php
-                        echo 'Aqui é php';
         }
+        
     }
     
-    $t = new Pagina_Inicial;
+    $t = new Pagina_Principal();
     $t->set_titulo('Pagina inicial');
     
     
