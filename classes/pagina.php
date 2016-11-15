@@ -73,6 +73,7 @@ class Pagina {
                   <label><b>Senha</b></label>
                   <input class="w3-input w3-border" type="password" placeholder="Digite sua senha" name="senha" required>
                   <button class="w3-btn-block w3-green w3-section w3-padding" type="submit">Login</button>
+                  <a href="cadastro_servidores.php"><label>Nao sou cadastrado</label></a>
                   
                 </div>
               </form>
