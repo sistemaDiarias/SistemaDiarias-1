@@ -31,9 +31,11 @@ class Pagina {
     
     function exibir_config(){
         ?>
-        <meta charset='utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="/SistemaDiaria/bootstrap/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+          <script src="/SistemaDiaria/bootstrap/js/bootstrap.min.js"></script>
         <?php
         
     }
@@ -45,44 +47,90 @@ class Pagina {
             
     function exibir_navbar(){
         ?>
-        <div class="container">
-        <nav>
-            <ul class="w3-navbar w3-black">
-                <li style="width: 25%;"><a href="index.php">Página inicial</a></li>
-                <li style="width: 25%;"><a href="#">Solicitar diária</a></li>
-                <li style="width: 25%;"><a href="cadastro_servidores.php">Cadastros</a></li>
-                <li style="width: 25%;">
-                    <button style="width: 100%;" onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-green w3-large">Login</button>
-                </li>                
-            </ul>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.php">SistemaDiaria</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="index.php">Home</a></li>
+                <li><a href="#">Solicitar diárias</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="cadastro_servidores.php"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
+                <li>
+                    <a class="btn btn-link btn-lg" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-log-in"></span> Login
+                    </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
-        </div>
-        
-        <div id="id01" class="w3-modal">
-            <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
-
-              <div class="w3-center"><br>
-                <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
-                <img src="img_avatar4.png" alt="Fazer login" style="width:30%" class="w3-circle w3-margin-top">
-              </div>
-
-                <form class="w3-container" action="" method="post">
-                <div class="w3-section">
-                  <label><b>Email</b></label>
-                  <input class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Digite seu e-mail" name="email" required>
-                  <label><b>Senha</b></label>
-                  <input class="w3-input w3-border" type="password" placeholder="Digite sua senha" name="senha" required>
-                  <button class="w3-btn-block w3-green w3-section w3-padding" type="submit">Login</button>
-                  <a href="cadastro_servidores.php"><label>Nao sou cadastrado</label></a>
+          
+          <!--Login Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-xg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Entrar no sistema</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email">
+                      </div>
+                      <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" class="form-control" id="senha">
+                      </div>
+                      <div class="checkbox">
+                          <label><input type="checkbox" class="checkbox" disabled>Lembrar-me</label>
+                      </div>
+                        
+                      <div class="row">
+                          <div class="col-xs-1"></div>
+                          
+                          <button type="submit" class="btn btn-success col-xs-5">Login</button>
+                          
+                          <div class="col-xs-4">
+                              <a href="#">
+                                <button class="btn btn-warning">Esqueci a senha</button>
+                              </a>
+                          </div>
+                          
+                      </div>  
+                      
+                    </form>
+                </div>
+                  
+                <div class="modal-footer row">
+                    <div class="col-xs-3">
+                        <a href="cadastro_servidores.php">
+                          <button class="btn btn-default">Não possuo cadastro</button>
+                        </a>
+                    </div>
+                    
+                    <div class="col-xs-5">
+                        
+                    </div>
+                    
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
                   
                 </div>
-              </form>
-
-              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red">Cancelar</button>
-                <span class="w3-right w3-padding w3-hide-small"><a href="#">Esqueci a senha</a></span>
               </div>
-
             </div>
           </div>
         
