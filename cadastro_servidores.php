@@ -1,6 +1,6 @@
 <?php
     require_once 'classes/pagina.php';
-    require_once 'DAO/DAO.php';
+    require_once 'DAO/ConexaoDAO.php';
     require_once 'classes/Servidor.php';
     require_once 'DAO/ServidorDAO.php';
     
@@ -99,9 +99,12 @@
     function exibir_sucesso(){
         
         ?>
-        <div class="alert alert-success">
-          <strong>O Servidor foi cadastrado com sucesso!</strong> 
+        <div class="container">
+            <div class="alert alert-success row">
+              <strong>O Servidor foi cadastrado com sucesso!</strong> 
+            </div>
         </div>
+        
         <?php
     }
 ?>
