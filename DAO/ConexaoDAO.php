@@ -6,7 +6,7 @@
  * @author kenad
  */
 
- class DAO
+ class ConexaoDAO
  {
      private $con;
      

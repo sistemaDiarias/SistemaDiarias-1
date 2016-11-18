@@ -26,7 +26,7 @@ class TrajetoDAO {
     
      function inserir($trajeto)
     {
-        $dao = new DAO();
+        $dao = new ConexaoDAO();
         $enderecoDAO = new EnderecoDAO($dao->getConexao());
         $enderecoDAO->inserir($trajeto->getSaida());
         $trajeto->setSaida(array_shift($enderecoDAO->buscarEndereco($trajeto->getSaida()->getRua(),$trajeto->getSaida()->getCep(),$trajeto->getSaida()->getEstado())));
