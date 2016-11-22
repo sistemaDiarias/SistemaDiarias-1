@@ -6,20 +6,22 @@
  * @author kenad
  */
 
- class ConexaoDAO
+ class DAO
  {
      private $con;
      
-     function getConexao()
-     {
-         $this->con = mysqli_connect('localhost', 'root', '', 'sistemadiarias');
-         mysqli_set_charset($this->con, "utf8");
-                  
+     function getConexao(){
+         $this->con = new mysqli('localhost', 'root', '', 'sistemadiarias');
+         if(mysqli_connect_errno()){
+             echo 'Codigo do erro '. mysqli_connect_errno();
+             exit();
+         }
+         $this->con->set_charset("utf8");
+         
          return $this->con;
      }
      
-     function fecharConexao()
-     {
-         mysqli_close($this->con);
+     function fecharConexao(){
+        return $this->con->close();
      }
  }

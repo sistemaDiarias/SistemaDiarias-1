@@ -1,22 +1,27 @@
 <?php
 
-require_once 'ConexaoDAO.php';
+//require_once '../classes/Servidor.php';
+require_once 'DAO.php';
 
 
 class ServidorDAO{
-    public static function inserir_servidor($servidor){
-        $dao = new ConexaoDAO();
+    public static function inserir_servidor($servidor){        
+        $dao = new DAO();
         $con = $dao->getConexao();
+        $query = "INSERT INTO servidor (cpf, nome, senha, matricula) VALUES (?,?,?,?)";
+        $stmt = $con->prepare($query);
         
-        $matricula = $servidor->getMatricula();
-        $cpf = $servidor->getCpf();
         $nome = $servidor->getNome();
+        $cpf = $servidor->getCpf();
         $senha = $servidor->getSenha();
+        $matricula = $servidor->getMatricula();
         
-        $stmt = $con->prepare("INSERT INTO servidor(matricula, cpf, nome, senha) VALUES (?,?,?,?)");
-        $stmt->bind_param('isss', $matricula, $cpf, $nome, $senha);
-        $stmt->execute();
+        $stmt->bind_param("sssi", $cpf, $nome, $senha, $matricula);
+        if(!$stmt->execute()){
+            return false;            
+        }
+        $stmt->close();
+        $dao->fecharConexao();
+        return true;
     }
-    
-    
 }
