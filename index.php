@@ -1,4 +1,5 @@
 <?php
+
     require_once ('classes/pagina.php');
     //Extende da classe Pagina
     class Pagina_Principal extends Pagina{
