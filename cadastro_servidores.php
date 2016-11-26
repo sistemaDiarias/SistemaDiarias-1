@@ -9,7 +9,7 @@
         public function exibir_body() {
             parent::exibir_body();            
             ?>
-                <h1>Pagina de cadastro de servidores</h1>
+                <h3>Pagina de cadastro de servidores</h3>
                 
             <?php
             
@@ -33,71 +33,69 @@
                 <div class="col-sm-1"></div>
                 
                 <div class="col-sm-10 formulario">
-                    <h2>Cadastro de servidores</h2>
-                    <form class="form-horizontal" action="controller/logica_cadastro_servidor.php" method="post">
+                    <form class="form-horizontal table" action="controller/logica_cadastro_servidor.php" method="post">
 
-
-                    <div class="form-group">
-                      <label class="control-label col-sm-2" for="email">Nome:</label>
-                      <div class="col-sm-10">
-                          <input type="text" class="form-control" name="nome" placeholder="Digite seu nome">
-                      </div>
-                    </div>  
-                    <div class="form-group">
-                      <label class="control-label col-sm-2" for="email">Matricula:</label>
-                      <div class="col-sm-10">
-                          <input type="number" class="form-control" name="matricula" placeholder="Digite sua matricula">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-sm-2" for="senha">Cpf:</label>
-                      <div class="col-sm-10">          
-                          <input type="text" class="form-control" name="cpf" placeholder="Digite seu cpf">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-sm-2" for="senha">Senha:</label>
-                      <div class="col-sm-10">          
-                        <input type="password" class="form-control" name="senha" placeholder="Digite sua senha">
-                      </div>
-                    </div>
-
-                    <div class="form-group">        
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                          <label><input type="checkbox"> Lembre-me</label>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="email">Nome:</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="nome" placeholder="Digite seu nome">
+                          </div>
+                        </div>  
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="email">Matricula:</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="matricula" placeholder="Digite sua matricula">
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="form-group">        
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Cadastrar</button>
-                      </div>
-                    </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="senha">Cpf:</label>
+                          <div class="col-sm-10">          
+                              <input type="text" class="form-control" name="cpf" placeholder="Digite seu cpf">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="senha">Senha:</label>
+                          <div class="col-sm-10">          
+                            <input type="password" class="form-control" name="senha" placeholder="Digite sua senha">
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="senha"> Confirmar senha:</label>
+                          <div class="col-sm-10">          
+                            <input type="password" class="form-control" name="confirmacao" placeholder="Confirmar senha">
+                          </div>
+                        </div>
+
+                        
+                        <div class="form-group">        
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                              <label><input type="checkbox"> Lembre-me</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">        
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Cadastrar</button>
+                          </div>
+                        </div>
                   </form>
                     
                 </div>
-                
-                
-                
-                
-              
             </div>
             <?php    
         }
         
     }
     
-    $t = new Pagina_Cadastro_Servidores();
+    session_start();
+    $t = new Pagina_Cadastro_Servidores($_SESSION['servidor']);
     
     $t->set_titulo('Cadastro de servidores');
     
-    
     $t->display();
-    
-    
-    
     
     function exibir_sucesso(){        
         ?>
