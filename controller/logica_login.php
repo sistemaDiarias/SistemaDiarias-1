@@ -21,7 +21,7 @@ function logar($matricula, $senha){
             header("Location: ../pagina_principal.php");
         }else
         {
-            header("Location: ../index.php");
+            header("Location: ../index.php?resultado=erro");
         }
     }else
     {

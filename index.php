@@ -30,12 +30,23 @@
 
                                 <strong><h4>Senha</h4></strong></br>
                                 <input type="password" id="inputPassword" class="form-control entrada" name="senha">
-
+                                
+                                <?php 
+                                if(filter_has_var(INPUT_GET, 'resultado')){
+                                    if(filter_input(INPUT_GET, 'resultado') == 'erro'){
+                                    ?>
+                                    <div class="alert alert-danger" style="margin-top: 10px;">
+                                        <strong>Erro!</strong> Usuário e/ou senha inválidos!
+                                    </div>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                                
+                                
+                                
                                 <input type="submit" class="btn btn-lg btn-primary btn-block botao" value="Entrar">
-
-                            </form>
-                            <form>
-                                <input type="submit" class="btn btn-lg btn-danger btn-block botao" value="Recuperar senha">
+                                <input class="btn btn-lg btn-danger btn-block botao" value="Recuperar senha">
                             </form>
                         </div>
                     </div>
