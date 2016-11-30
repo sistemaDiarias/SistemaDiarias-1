@@ -14,19 +14,18 @@ body{
      text-align: center;
      color: green;
 }
-
+.titulo
+{
+    text-align: center;
+    margin: 2%;
+    color: grey;
+}
 .formulario h4
 {
     text-align: center;
     color: grey;
     padding: 2%;
     margin: 0%;
-}
-.botao
-{
-    max-width: 97%;
-    border-radius: 0%;
-    margin: 2% 0%;
 }
 
 .entrada

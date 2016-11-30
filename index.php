@@ -1,5 +1,4 @@
 <?php
-
     require_once ('classes/pagina.php');
     //Extende da classe Pagina
     class Pagina_Principal extends Pagina{
@@ -19,7 +18,8 @@
                         <img class="img-responsive" src="img/logo_uespi.png">
                     </div>
                 </div>
-
+                <h1 class="titulo">UESPI - Universidade Estadual do Piauí</h1>
+                <h3 class="titulo">Sistema de Diárias</h3>
                 <div class="row">
                     <div class="col-sm-4 col-xs-1"></div>
                     <div class="col-sm-4 col-xs-10">

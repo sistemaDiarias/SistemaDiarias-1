@@ -5,11 +5,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'classes/pagina.php';
-class PaginaPrincipal extends Pagina
+
+if($_POST)
 {
     
 }
-session_start();
-$pag = new PaginaPrincipal(NULL);
-$pag->display();

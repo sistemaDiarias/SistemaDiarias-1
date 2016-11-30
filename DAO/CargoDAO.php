@@ -8,21 +8,22 @@
 require_once('DAO/DAO.php');
 require_once('classes/Cargo.php');
 
-class CargoDAO
-{
-    private $conexao;
+class CargoDAO{
+    
 
-    function __construct($conexao)
+    function inserir(Cargo $cargo)
     {
-        $this->conexao = $conexao;
-    }
+        try {
+            $query = "insert into cargo(nome,id_perfil_diaria) values('{$cargo->getNome()}','{$cargo->getPerfilDiaria()->getId()}')";
 
-    function inserir($cargo)
-    {
-
-        $query = "insert into cargo(nome,classe,id_perfil_diaria) values('{$cargo->getNome()}','{$cargo->getClasse()}','{$cargo->getPerfilDiaria()->getId()}')";
-
-        mysqli_query($conexao, $query);
+            mysqli_query($conexao, $query);
+            
+            return true;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+            
+            return false;
+        }
     }
     function buscarPorId($id)
     {
@@ -56,17 +57,13 @@ class CargoDAO
     }
     function listarTodos()
     {
-        $query = "select * from cargo";
+        $query = "SELECT * FROM cargo ORDER BY nome ASC";
 
-        $resultado = mysqli_query($conexao, $query);
-
-        $cargos = array();
-
-        while($cargo = mysqli_fetch_assoc($resultado))
-        {
-            array_push($cargos,$cargo);
-        }
-
-        return $cargo;
+        $dao = new DAO();
+        $conexao = $dao->getConexao();
+        $resultado = $conexao->query($query);
+        $arrayCargo = $resultado->fetch_all(MYSQLI_ASSOC);
+        $dao->fecharConexao();
+        return $arrayCargo;
     }
 }

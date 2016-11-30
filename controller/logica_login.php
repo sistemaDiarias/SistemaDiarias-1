@@ -8,24 +8,26 @@ function logar($matricula, $senha){
     session_start();
     echo $matricula;
     echo $senha;
-    $dao = new DAO();
-    $servidorDAO = new ServidorDAO($dao->getConexao());
+    $servidorDAO = new ServidorDAO();
     $servidores = $servidorDAO->buscarPorMatricula($matricula);
 
-    if(count($servidores)==1)
-    {
+    if(count($servidores)==1){
         $servidor =  $servidores[0];
-        if($servidor['senha'] == $senha)
-        {
+        if($servidor['senha'] == $senha){
             $_SESSION['servidor'] = $servidor;
             header("Location: ../pagina_principal.php");
-        }else
-        {
+        }else{
             header("Location: ../index.php?resultado=erro");
         }
-    }else
-    {
+    }else{
         header("Location: ../index.php?resultado=erro");
     }
 } 
-logar($_POST['matricula'],$_POST['senha']);
+
+if (filter_has_var(INPUT_POST, 'matricula') && filter_has_var(INPUT_POST, 'senha') ){
+    if(filter_input(INPUT_POST, 'matricula', FILTER_VALIDATE_INT)){
+        $matricula = filter_input(INPUT_POST, 'matricula');
+        $senha = filter_input(INPUT_POST, 'senha');
+        logar($matricula, $senha);
+    }
+}
