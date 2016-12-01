@@ -1,7 +1,3 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
 --
 -- Banco de dados: `sistemadiarias`
 --
@@ -22,7 +18,7 @@ CREATE TABLE `cargo` (
 -- Fazendo dump de dados para tabela `cargo`
 --
 
-INSERT INTO `cargo` (`id`, `nome`, `id_perfil_diaria`) VALUES
+INSERT INTO `cargo` VALUES
 (1, 'SECRETÁRIOS', 1),
 (2, 'PROCURADOR GERAL', 1),
 (3, 'DEFENSOR GERAL', 1),
@@ -53,7 +49,7 @@ INSERT INTO `cargo` (`id`, `nome`, `id_perfil_diaria`) VALUES
 --
 
 CREATE TABLE `diaria_viagem` (
-  `id` bigint(20) NOT NULL,
+  `id_diaria` bigint(20) NOT NULL,
   `quant_dias` int(11) DEFAULT NULL,
   `objeto_viagem` varchar(500) NOT NULL,
   `data_inicial` varchar(10) NOT NULL,
@@ -108,7 +104,7 @@ CREATE TABLE `pais` (
 -- Fazendo dump de dados para tabela `pais`
 --
 
-INSERT INTO `pais` (`id_pais`, `categoria`, `nome`) VALUES
+INSERT INTO `pais` VALUES
 (1, 'A', 'Afeganistão'),
 (2, 'A', 'Albânia'),
 (3, 'A', 'Argélia'),
@@ -223,7 +219,7 @@ CREATE TABLE `perfil_diaria` (
 -- Fazendo dump de dados para tabela `perfil_diaria`
 --
 
-INSERT INTO `perfil_diaria` (`id_perfil_diaria`, `nome`, `valor_no_estado`, `valor_fora_estado`, `valor_regiao_a`, `valor_regiao_b`, `valor_regiao_c`, `valor_regiao_d`) VALUES
+INSERT INTO `perfil_diaria` VALUES
 (1, 'Classe I', 172.5, 345, 200, 280, 330, 420),
 (2, 'Classe II', 120, 240, 190, 270, 320, 420),
 (3, 'Classe III', 75, 150, 180, 260, 310, 370);
@@ -253,13 +249,6 @@ CREATE TABLE `servidor` (
   `id_cargo` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Fazendo dump de dados para tabela `servidor`
---
-
-INSERT INTO `servidor` (`matricula`, `cpf`, `nome`, `senha`, `id_cargo`) VALUES
-('1050627', '05361380369', 'KENAD WANDERSON ARAUJO SILVA', 'wanderson', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -287,7 +276,7 @@ ALTER TABLE `cargo`
 -- Índices de tabela `diaria_viagem`
 --
 ALTER TABLE `diaria_viagem`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_diaria`),
   ADD KEY `id_projeto` (`id_projeto`),
   ADD KEY `id_trajeto` (`id_trajeto`),
   ADD KEY `id_modalidade` (`id_modalidade`),
@@ -353,7 +342,7 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de tabela `diaria_viagem`
 --
 ALTER TABLE `diaria_viagem`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_diaria` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de tabela `endereco`
 --
@@ -393,6 +382,21 @@ ALTER TABLE `trajeto`
 --
 ALTER TABLE `cargo`
   ADD CONSTRAINT `cargo_ibfk_1` FOREIGN KEY (`id_perfil_diaria`) REFERENCES `perfil_diaria` (`id_perfil_diaria`);
+
+--
+-- Restrições para tabelas `diaria_viagem`
+--
+ALTER TABLE `diaria_viagem`
+  ADD CONSTRAINT `diaria_viagem_ibfk_1` FOREIGN KEY (`id_projeto`) REFERENCES `projeto` (`id`),
+  ADD CONSTRAINT `diaria_viagem_ibfk_2` FOREIGN KEY (`id_trajeto`) REFERENCES `trajeto` (`id`),
+  ADD CONSTRAINT `diaria_viagem_ibfk_3` FOREIGN KEY (`id_modalidade`) REFERENCES `modalidade_transporte` (`id`),
+  ADD CONSTRAINT `diaria_viagem_ibfk_4` FOREIGN KEY (`id_servidor`) REFERENCES `servidor` (`matricula`);
+
+--
+-- Restrições para tabelas `servidor`
+--
+ALTER TABLE `servidor`
+  ADD CONSTRAINT `servidor_ibfk_1` FOREIGN KEY (`id_cargo`) REFERENCES `cargo` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
