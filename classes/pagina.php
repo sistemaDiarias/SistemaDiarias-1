@@ -14,6 +14,10 @@ class Pagina {
     }
 
     final function display(){
+        session_start();
+        if(!isset($_SESSION['servidor'])){
+            header("Location: index.php?resultado=erro");
+        }
         echo "<!DOCTYPE html>\n";
         echo "<html lang='pt-br'>\n";
         echo "<head>\n";

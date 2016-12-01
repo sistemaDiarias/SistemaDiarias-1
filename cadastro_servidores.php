@@ -114,8 +114,7 @@
         
     }
     
-    session_start();
-    $t = new Pagina_Cadastro_Servidores($_SESSION['servidor']);
+    $t = new Pagina_Cadastro_Servidores();
     
     $t->set_titulo('Cadastro de servidores');
     
