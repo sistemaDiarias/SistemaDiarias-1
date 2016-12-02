@@ -36,8 +36,7 @@ class tabela_dinamica
         $this->colunas = $colunas;
         $matricula = $busca[0];
         $nome =  $busca[1];
-        $dao = new DAO();
-        $servidor = new ServidorDAO($dao->getConexao());
+        $servidor = new ServidorDAO();
         $this->dados = $servidor->buscarPorMatricula($matricula);
         
         

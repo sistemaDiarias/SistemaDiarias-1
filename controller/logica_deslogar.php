@@ -1,5 +1,5 @@
 <?php
 
-unset($_SESSION);
-session_destroy();
+session_start();
+unset($_SESSION['servidor']);
 header("Location: ../index.php");

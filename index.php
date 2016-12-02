@@ -45,6 +45,13 @@
                                     </div>
                                     <?php
                                     }
+                                    if(filter_input(INPUT_GET, 'resultado') == 'acessonegado'){
+                                    ?>
+                                    <div class="alert alert-danger" style="margin-top: 10px;">
+                                        <strong>Erro!</strong> Sem permissão. Faça login!
+                                    </div>
+                                    <?php
+                                    }
                                 }
                                 ?>
                                 

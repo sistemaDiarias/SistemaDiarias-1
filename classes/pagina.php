@@ -1,5 +1,5 @@
 <?php
-$root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
+$root = $_SERVER['DOCUMENT_ROOT'].'/SistemaDiarias';
 require_once "$root/DAO/ServidorDAO.php";
 class Pagina {
     
@@ -17,7 +17,7 @@ class Pagina {
     final function display(){
         session_start();
         if(!isset($_SESSION['servidor'])){//Se seção não exixtir
-            header("Location: index.php?resultado=ecessonegado");
+            header("Location: index.php?resultado=acessonegado");
         }else{//Se a seção existir
             $servidorSessao = $_SESSION['servidor'];
             $servidorDao = new ServidorDAO();
