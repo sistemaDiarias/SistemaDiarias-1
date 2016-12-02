@@ -17,11 +17,12 @@ class CargoDAO
             $query = "insert into cargo(nome,id_perfil_diaria) values('{$cargo->getNome()}','{$cargo->getPerfilDiaria()->getId()}')";
             $dao = new DAO();
             $conexao = $dao->getConexao();
-            $resultado = $conexao->query($query);            
+            $resultado = $conexao->query($query);    
+            $dao->fecharConexao();
             return true;
         } catch (Exception $ex) {
             echo $ex->getMessage();
-            
+            $dao->fecharConexao();
             return false;
         }
     }
