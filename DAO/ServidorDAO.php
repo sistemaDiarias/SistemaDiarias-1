@@ -8,35 +8,27 @@ class ServidorDAO{
         
     public function inserir_servidor(Servidor $servidor){        
         try{
-            $con = $this->conexao;
+            $con = DAO::getConexao();
             $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo) VALUES (?,?,?,?,?,?)";
             $stmt = $con->prepare($query);
             
-            
-            $nome = mysqli_real_escape_string($con,$servidor->getNome());
-            $cpf = mysqli_real_escape_string($con,$servidor->getCpf());
-            $senha = mysqli_real_escape_string($con,$servidor->getSenha());
-            $matricula = mysqli_real_escape_string($con,$servidor->getMatricula());
-            $email = mysqli_real_escape_string($con,$servidor->getEmail());
-            $cargo = mysqli_real_escape_string($con,intval($servidor->getCargo()));
-            
-            $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo) VALUES ('{$matricula}','{$cpf}','{$email}','{$nome}','{$senha}','{$cargo}')";
-            
-            /*if ($con->query($query) === TRUE) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . $con->error;
-            }*/
-                        
+            $nome = $con->real_escape_string($servidor->getNome());
+            $cpf = $con->real_escape_string($servidor->getCpf());
+            $senha = $con->real_escape_string($servidor->getSenha());
+            $matricula = $con->real_escape_string($servidor->getMatricula());
+            $email = $con->real_escape_string($servidor->getEmail());
+            $cargo = $con->real_escape_string(intval($servidor->getCargo()));
+                                    
             $stmt->bind_param("sssssi",$matricula,$cpf,$email,$nome,$senha,$cargo);
-            if(!$stmt->execute()){
-                
+            if(!$stmt->execute()){                
                 return false;            
             }
             $stmt->close();
+            $con->close();
             return true;
         } catch (Exception $e)
         {
+            $con->close();
             echo $e->getMessage();
             return false;
         }
@@ -46,32 +38,26 @@ class ServidorDAO{
     public function buscarPorMatricula($matricula)
     {
         $query = "SELECT * FROM servidor WHERE matricula = '{$matricula}'";
-        $dao = new DAO();
-        $conexao = $dao->getConexao();
-        
-        $resultado = $conexao->query($query);
+        $con = DAO::getConexao();        
+        $resultado = $con->query($query);
         $arrayServidores = $resultado->fetch_all(MYSQLI_ASSOC);
+        $con->close();
         if(count($arrayServidores)==0){
-            $dao->fecharConexao();
             return NULL;
         }
-        $dao->fecharConexao();
         return $arrayServidores[0];
     }
     
     public function listarTodos(){
         $query = "SELECT * FROM servidor ORDER BY nome ASC";
-        $dao = new DAO();
-        $conexao = $dao->getConexao();
+        $con = DAO::getConexao();
         
-        $resultado = $conexao->query($query);
+        $resultado = $con->query($query);
         $arrayServidores = $resultado->fetch_all(MYSQLI_ASSOC);
+        $con->close();
         if(count($arrayServidores)==0){
-            $dao->fecharConexao();
             return NULL;
         }
-        
-        $dao->fecharConexao();
         return $arrayServidores;
     }
 }

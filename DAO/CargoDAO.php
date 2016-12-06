@@ -15,60 +15,50 @@ class CargoDAO
     {
         try {
             $query = "insert into cargo(nome,id_perfil_diaria) values('{$cargo->getNome()}','{$cargo->getPerfilDiaria()->getId()}')";
-            $dao = new DAO();
-            $conexao = $dao->getConexao();
-            $resultado = $conexao->query($query);    
-            $dao->fecharConexao();
+            $con = DAO::getConexao();
+            $resultado = $con->query($query);    
+            $con->close();
             return true;
         } catch (Exception $ex) {
             echo $ex->getMessage();
-            $dao->fecharConexao();
+            $con->close();
             return false;
         }
     }
     function buscarPorId($id)
     {
         $query = "select * from cargo where id = '{$id}'";
-        $dao = new DAO();
-        $conexao = $dao->getConexao();
-        $resultado = $conexao->query($query);
+        $con = DAO::getConexao();
+        $resultado = $con->query($query);
         $cargo = $resultado->fetch_all(MYSQLI_ASSOC);
-
+        $con->close();
         if(count($cargo)==0){
-            $dao->fecharConexao();
             return NULL;
         }
-        $dao->fecharConexao();
         return $cargo[0];
     }
     function buscarPorNome($nome)
     {
         $query = "select * from cargo where nome = '{$nome}'";
-        $dao = new DAO();
-        $conexao = $dao->getConexao();
-        $resultado = $conexao->query($query);
+        $con = DAO::getConexao();
+        $resultado = $con->query($query);
         $cargo = $resultado->fetch_all(MYSQLI_ASSOC);
-
+        $con->close();
         if(count($cargo)==0){
-            $dao->fecharConexao();
             return NULL;
         }
-        $dao->fecharConexao();
         return $cargo[0];
     }
     function listarTodos()
     {
         $query = "select * from cargo ORDER BY nome ASC";
-        $dao = new DAO();
-        $conexao = $dao->getConexao();
-        $resultado = $conexao->query($query);
+        $con = DAO::getConexao();
+        $resultado = $con->query($query);
         $cargo = $resultado->fetch_all(MYSQLI_ASSOC);
-
+        $con->close();
         if(count($cargo)==0){
-            $dao->fecharConexao();
             return NULL;
         }
-        $dao->fecharConexao();
         return $cargo;
     }
 }
